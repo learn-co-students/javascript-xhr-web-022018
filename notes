@@ -1,0 +1,48 @@
+******************
+XHR fetches data from remote resources
+ XMLHttpRequest object, or XHR, is a JavaScript API that allows us to transfer data between a client and a server.
+ but it can be used with any type of data, including JSON, which is the current de facto standard.
+XHR helps us write dynamic programs by allowing us to fetch data from a server based on user events,
+  and update parts of pages without requiring a full-page refresh
+
+
+***********
+data attribute - html
+ Say you have an article and you want to store some extra information that doesn’t have any visual representation. Just use data attributes for that:
+   <article
+     id="electriccars"
+     data-columns="3"
+     data-index-number="12314"
+     data-parent="cars">
+   ...
+   </article>
+read by JS
+  var article = document.getElementById('electriccars');
+  article.dataset.columns // "3"
+  article.dataset.indexNumber // "12314"
+  article.dataset.parent // "cars"
+*******************************************
+Convert HTML dom "Array-like" Node-list to Array
+allPs = document.querySelectorAll('p')
+Array.from(allPs)
+[...allPs]
+
+allPs.constructor <- show constructor
+
+
+//event auto provided
+allPs.forEach( p => p.addEventListener('mouseover',(event)=>{
+  console.log(event) //hows the event in console //if you expand and look at target you can see where event coming from
+  event.target.style.color = "green"
+}))
+
+
+forms listen for submit actions
+//to make form not submit
+function dontSubmit(event){
+  event.preventDefault();
+  console.log("event prevented")
+}
+searchFor.addEventListener('submit',dontSubmit) <- not using () because its a callback e arent invoking it now
+//if need send arguments thing do the following:
+searchFor.addEventListener('submit',(event)=>(dontSubmit(event)))
